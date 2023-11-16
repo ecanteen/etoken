@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canteen Ordering System</title>
+    <link rel="stylesheet" href="text.css">
+ <style>
+        /* CSS animation for menu items */
+        @keyframes scaleUp {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.03); }
+        }
+
+        .menu-item:hover {
+            animation: scaleUp 0.3s ease-in-out;
+        }
+.CMREC-CANTEEN {
+            font-size: 36px;
+            margin-top: -3cm; /* Move it 2 cm up */
+        }
+
+    </style>
+</head>
+<body>
+<section class="hero">
+    <img src="https://image.freepik.com/free-vector/happy-cartoon-people-characters-visit-canteen_82574-10739.jpg" alt="Hero Image" class="hero-image">
+    <div class="hero-content">
+        
+    </div>
+
+ <div id="foodQuotes" style="display: block">
+        <p id="quoteText" style="font-size: 45px;">THINK FOOD - THINK CANTEEN</p>
+    </div>
+
+</section>
+    <main class="main">
+        <section id="menu" class="menu">
+            <!-- Menu items -->
+            <div class="menu-item" data-id="1">
+                <img src="https://th.bing.com/th/id/OIP.CqHnBZGT6o_rsEjgM3U4FgHaE0?rs=1&pid=ImgDetMain" alt="Meals" class="menu-item-image">
+                <h3 class="menu-item-title">Meals</h3>
+                <p class="menu-item-price">Rs. 60</p>
+                <button type="button" class="menu-item-button">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-id="2">
+                <img src="https://static.toiimg.com/thumb/msid-76344801,imgsize-81967,width-800,height-600,resizemode-75/76344801.jpg" alt="Parota" class="menu-item-image">
+                <h3 class="menu-item-title">Parota</h3>
+                <p class="menu-item-price">Rs. 40</p>
+                <button type="button" class="menu-item-button">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-id="3">
+                <img src="https://getinfolist.com/wp-content/uploads/2014/04/dosa22.jpg" alt="Chicken Rice" class="menu-item-image">
+                <h3 class="menu-item-title">Chicken Rice</h3>
+                <p class="menu-item-price">Rs. 60</p>
+                <button type="button" class="menu-item-button">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-id="4">
+                <img src="https://lh3.googleusercontent.com/ZFoulTSsIrDroRAndViwP_TUzUU-5uogQFhQAIXfuVb4fIgkPQJW9ySv8GxMN4qu6MMbLddm1C48AsaMFNykwMa_Ck9PtqfvSo2Gt5rl=w512-rw" alt="Chicken Noodles" class="menu-item-image">
+                <h3 class="menu-item-title">Chicken Noodles</h3>
+                <p class="menu-item-price">Rs. 50</p>
+                <button type="button" class="menu-item-button">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-id="5">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7X3wcGjYJNoWTYKGGZ5hL3hcOC3oT7lNO7w&usqp=CAU" alt="Egg Rice" class="menu-item-image">
+                <h3 class="menu-item-title">Egg Rice</h3>
+                <p class="menu-item-price">Rs. 50</p>
+                <button type="button" class="menu-item-button">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-id="6">
+                <img src="https://th.bing.com/th/id/R.0362066ac8e39260a1b7d9cbc0077ed5?rik=rQnnA%2fpbZzUtnQ&riu=http%3a%2f%2f4.bp.blogspot.com%2f-69_SZCoydCo%2fTgYUhXuAYZI%2fAAAAAAAAEGA%2fPiJFMTUvBEk%2fs1600%2fDSC08214.JPG&ehk=UeceAf9tP5ruXQjnB2DjL5%2feMtorqxgmTxiq3IUwEPY%3d&risl=&pid=ImgRaw&r=0" alt="Egg Noodles" class="menu-item-image">
+                <h3 class="menu-item-title">Egg Noodles</h3>
+                <p class="menu-item-price">Rs. 50</p>
+                <button type="button" class="menu-item-button">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-id="7">
+                <img src="https://i0.wp.com/ayurvedam365.com/wp-content/uploads/2022/09/veg-fried-rice.jpg?resize=1200%2C675&ssl=1" alt="Veg Fried Rice" class="menu-item-image">
+                <h3 class="menu-item-title">Veg Fried Rice</h3>
+                <p class="menu-item-price">Rs. 40</p>
+                <button type="button" class="menu-item-button">Add to Cart</button>
+            </div>
+            <!-- Add more menu items here -->
+        </section>
+        <section id="cart" class="cart">
+            <h2 class="cart-title">Food Cart</h2>
+            <ul id="cart-items" class="cart-items">
+                <!-- Cart items will be displayed here -->
+            </ul>
+            <p class="cart-total">Total: <span id="cart-total">Rs. 0</span></p>
+            <button type="submit" id="checkout" class="checkout-button">Checkout</button>
+        </section>
+    </main>
+    <footer class="footer">
+        <!-- Add footer content here -->
+    </footer>
+    <div class="popup" id="addedToCartPopup">Added to Cart</div>
+    <script>
+        // Define menu items
+        const menuItems = [
+            { id: 1, name: 'Meals', price: 60 },
+            { id: 2, name: 'Parota', price: 40 },
+            { id: 3, name: 'Chicken Rice', price: 60 },
+            { id: 4, name: 'Chicken Noodles', price: 50 },
+            { id: 5, name: 'Egg Rice', price: 50 },
+            { id: 6, name: 'Egg Noodles', price: 50 },
+            { id: 7, name: 'Veg Fried Rice', price: 40 },
+        ];
+
+        const shoppingCart = [];
+
+        // Function to add items to the cart
+        function addToCart(item) {
+            shoppingCart.push(item);
+            updateCart();
+            showAddedToCartPopup();
+        }
+
+        // Function to remove items from the cart
+        function removeFromCart(item) {
+            const itemIndex = shoppingCart.indexOf(item);
+            if (itemIndex !== -1) {
+                shoppingCart.splice(itemIndex, 1);
+                updateCart();
+            }
+        }
+
+        // Function to update the cart display
+
+function updateCart() {
+    const cartSection = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    let total = 0;
+
+    cartSection.innerHTML = '';
+    const groupedItems = groupItemsByName(shoppingCart);
+    
+    groupedItems.forEach((group, index) => {
+        const cartItem = document.createElement('li');
+        const itemCount = group.items.length;
+        const item = group.items[0];
+        cartItem.innerHTML = ${item.name} X${itemCount} - Rs. ${item.price * itemCount} <button class="remove-button">Remove</button>;
+        cartItem.dataset.index = index; // Store the index for removal
+        cartSection.appendChild(cartItem);
+        total += item.price * itemCount;
+    });
+
+    cartTotal.textContent = Rs. ${total};
+}
+
+function groupItemsByName(items) {
+    const groupedItems = [];
+    
+    items.forEach((item) => {
+        const existingGroup = groupedItems.find((group) => group.name === item.name);
+        if (existingGroup) {
+            existingGroup.items.push(item);
+        } else {
+            groupedItems.push({ name: item.name, items: [item] });
+        }
+    });
+
+    return groupedItems;
+}
+
+
+        // Event listener for adding items to the cart
+        document.getElementById('menu').addEventListener('click', (event) => {
+            if (event.target.classList.contains('menu-item-button')) {
+                const menuItem = menuItems.find(item => item.id === parseInt(event.target.parentElement.dataset.id));
+                if (menuItem) {
+                    addToCart(menuItem);
+                }
+            }
+        });
+
+        // Event listener for removing items from the cart
+        document.getElementById('cart').addEventListener('click', (event) => {
+            if (event.target.classList.contains('remove-button')) {
+                const itemIndex = parseInt(event.target.parentElement.dataset.index);
+                const itemToRemove = shoppingCart[itemIndex];
+                removeFromCart(itemToRemove);
+            }
+        }
+        );
+
+function showAddedToCartPopup() {
+    const popup = document.getElementById('addedToCartPopup');
+    popup.classList.add('show');
+    setTimeout(() => {
+        popup.classList.remove('show');
+    }, 2000); // Hide the popup after 2 seconds
+}
+
+    </script>
+</body>
+</html>
